@@ -420,14 +420,15 @@ async def cmd_status(m:Message):
     ch=sum(1 for x in mem.d["optimizations"] if x.get("c"))
     nxt=OPTIMIZE_EVERY-(t%OPTIMIZE_EVERY) if t%OPTIMIZE_EVERY else OPTIMIZE_EVERY
     await m.answer(
-        f"📊 *Статус бота v4.0*\n\n"
+        f"Статус бота v4.0\n\n"
         f"Задач обработано: {t}\n"
         f"Оптимизаций: {o}\n"
         f"Промптов улучшено: {ch}\n"
         f"До оптимизации: {nxt} задач\n"
         f"Версия промптов: v{prm.v}\n"
-        f"Генерация картинок: {'✅' if OPENAI_KEY else '❌'}",
+        f"Генерация картинок: {'✅' if OPENAI_KEY else '❌'}"
     )
+
 
 @dp.message(Command("optimize"))
 async def cmd_optimize(m:Message):
