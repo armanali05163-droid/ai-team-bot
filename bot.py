@@ -401,16 +401,17 @@ async def run_experts(task):
 # ═══════════════════════════════════════════
 @dp.message(Command("start"))
 async def cmd_start(m:Message):
-    has_img = "✅" if OPENAI_KEY else "❌ (нужен OPENAI_KEY)"
+    has_img = "✅" if OPENAI_KEY else "❌ нужен OPENAI_KEY"
     await m.answer(
-        f"👋 *AI Team Bot v4.0*\n\n"
+        f"👋 AI Team Bot v4.0\n\n"
         f"🤖 15 экспертов · КЗ + СНГ\n"
-        f"🏦 Финансовое право КЗ (новый эксперт)\n"
+        f"🏦 Финансовое право КЗ\n"
+        f"🔴 Deep Risk Analyst\n"
+        f"💹 Financial Model Builder\n"
         f"🎨 Генерация картинок: {has_img}\n"
         f"🧠 Самообучение каждые {OPTIMIZE_EVERY} задач\n\n"
-        f"Напишите задачу → ответы придут в канал.\n\n"
-        f"/status /optimize /version /image",
-        parse_mode="Markdown"
+        f"Напишите задачу — ответы придут в канал.\n\n"
+        f"/status /optimize /version /image"
     )
 
 @dp.message(Command("status"))
