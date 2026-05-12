@@ -493,9 +493,19 @@ async def handle(m:Message):
         log.error(f"Ошибка: {ex}"); await m.answer(f"❌ {ex}")
 
 async def main():
+    log.info(f"🚀 СТАРТ | BOT_TOKEN={'OK' if BOT_TOKEN else 'ПУСТО'} | CLAUDE={'OK' if CLAUDE_KEY else 'ПУСТО'} | CHANNEL={CHANNEL_ID}")
     log.info(f"🚀 AI Team Bot v4.0 | 15 экспертов | Задач: {mem.d['total']} | v{prm.v}")
     log.info(f"Генерация картинок: {'✅ включена' if OPENAI_KEY else '❌ нет OPENAI_KEY'}")
-    await dp.start_polling(bot)
+    try:
+        await dp.start_polling(bot)
+    except Exception as e:
+        log.error(f"💥 КРИТИЧЕСКАЯ ОШИБКА: {e}")
+        raise
 
 if __name__=="__main__":
-    asyncio.run(main())
+    try:
+        asyncio.run(main())
+    except Exception as e:
+        print(f"FATAL: {e}")
+        import traceback
+        traceback.print_exc()
