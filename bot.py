@@ -427,7 +427,6 @@ async def cmd_status(m:Message):
         f"До оптимизации: {nxt} задач\n"
         f"Версия промптов: v{prm.v}\n"
         f"Генерация картинок: {'✅' if OPENAI_KEY else '❌'}",
-        parse_mode="Markdown"
     )
 
 @dp.message(Command("optimize"))
@@ -438,11 +437,11 @@ async def cmd_optimize(m:Message):
 
 @dp.message(Command("version"))
 async def cmd_version(m:Message):
-    lines=[f"📝 *Промпты v{prm.v}*\n"]
+    lines=[f"Промпты v{prm.v}\n"]
     for eid in EXPERTS:
         e=prm.get(eid)
         lines.append(f"{e['emoji']} {e['name']}: {len(e.get('prompt',''))} симв.")
-    await m.answer("\n".join(lines),parse_mode="Markdown")
+    await m.answer("\n".join(lines))
 
 @dp.message(Command("image"))
 async def cmd_image(m:Message):
